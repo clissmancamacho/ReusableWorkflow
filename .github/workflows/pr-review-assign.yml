@@ -1,0 +1,15 @@
+name: PR Review Assign
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, edited]
+    branches: [staging]
+
+jobs:
+  assign:
+    uses: clissmancamacho/ReusableWorkflow/.github/workflows/prReviewAssign.yml@feat/pr-review-same-card
+    with:
+      reviewers: "clissmancamacho, uno, dos, tres, cuatro"
+      dry_run: true
+    permissions:
+      pull-requests: write
