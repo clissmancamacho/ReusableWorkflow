@@ -1,0 +1,17 @@
+name: PR Review Assign
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, edited]
+    branches: [staging]
+
+jobs:
+  assign:
+    uses: clissmancamacho/ReusableWorkflow/.github/workflows/prReviewAssign.yml@feat/pr-review-assign
+    with:
+      reviewers: ${{ vars.PR_REVIEWERS }}
+      slack_user_map: ${{ vars.PR_REVIEW_SLACK_USERS }}
+    secrets:
+      slack_webhook_url: ${{ secrets.SLACK_PR_REVIEW_WEBHOOK }}
+    permissions:
+      pull-requests: write
